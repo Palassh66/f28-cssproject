@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://wallpapercave.com/wp/wp2903364.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column; 
+    }
+
+    
+    .login-box {
+      background-color: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 300px; /* Fixed width */
+      display: none; /* Hidden by default */
+    }
+
+    .login-box h3 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-box input {
+      margin-bottom: 15px;
+    }
+
+    .login-box button {
+      width: 100%;
+    }
+
+    /* Dashboard styles */
+    .dashboard {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start; 
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%; 
+      color: #7f6565; 
+    }
+
+    /* Navbar styles */
+    .navbar-custom {
+      background-color: rgba(52, 58, 64, 0.9); 
+    }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand {
+      color: white; 
+    }
+    .navbar-custom .nav-link:hover {
+      color: #7873f5; 
+    }
+
+    /* Section styles */
+    .section {
+      display: none; 
+      margin-top: 20px; 
+      width: 100%; 
+    }
+    .section.active {
+      display: block; 
+    }
+
+    /* Welcome message styles */
+    .welcome-message {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 20px; 
+    }
+
+    /* Logo styles */
+    .navbar-brand img {
+      width: 30px; 
+      height: auto; 
+      margin-right: 
+      vertical-aling:
+    }
+    
+    /* Logout icon styles */
+    .logout-icon {
+      width: 30px; 
+      height: auto; 
+      cursor: pointer; 
+      margin-left: 15px; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.cnet.com/a/img/resize/c325478ba62e5f37b0a1df91787297358b0d9498/hub/2018/05/02/35af2fe6-d2ff-4b85-a94d-194b11b4f841/mcu-logo-render.jpg?auto=webp&width=768" alt="Marvel Logo">
+        MARVEL UNIVERSE
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" onclick="showSection('home')">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showSection('about')">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showSection('services')">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showSection('contact')">Contact</a>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828770.png" alt="Logout" class="logout-icon" onclick="logout()">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Box -->
+  <div class="login-box" id="loginBox">
+    <h3>Login</h3>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="username" class="form-label text-white">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter your username" value="palash@123">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label text-white">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password" value="palash">
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <div class="container-fluid">
+      <div id="home" class="section active"> <!-- Home Section -->
+        <div class="welcome-message">Welcome</div> 
+        <h1>Welcome to the Dashboard</h1>
+        <p>This is the home section content. You can find the latest updates here.</p>
+      </div>
+      <div id="about" class="section"> 
+        <h1>About Us</h1>
+        <p>We are a team dedicated to bringing you the best services in the industry.</p>
+      </div>
+      <div id="services" class="section"> 
+        <h1>Our Services</h1>
+        <p>We offer a range of services to meet your needs.</p>
+      </div>
+      <div id="contact" class="section"> 
+        <h1>Contact Us</h1>
+        <p>Feel free to reach out to us through our contact page.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (optional but needed for responsive features) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Show the login box on page load
+    document.getElementById('loginBox').style.display = 'block';
+
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Simple validation (you can customize this as needed)
+      if (username === 'palash@123' && password === 'palash') {
+        alert('Login successful!');
+        // Show the dashboard and hide the login box
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'flex';
+      } else {
+        alert('Invalid username or password.');
+      }
+    });
+
+    // Function to show the selected section
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show the selected section
+      document.getElementById(sectionId).classList.add('active');
+
+      // Set the active link in the navbar
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+      const activeLink = Array.from(navLinks).find(link => link.textContent.toLowerCase() === sectionId);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+
+    // Function to handle logout
+    function logout() {
+      alert('You have been logged out.');
+      // Hide the dashboard and show the login box
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('loginBox').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
